@@ -27,5 +27,16 @@ library(here)           # To find files
 library(readxl)         # To read Excel files
 library(readr)          # To write csv
 ```
+
+## Read source data
+
+```{r}
+data <- read_xlsx(here::here("data", "raw", "DagvlindersR.xls"))
+```
+
+## Write data
+
+```{r}
+write_csv(data, here::here("data", "processed", "taxa.csv"), na = "")
 ```
 
