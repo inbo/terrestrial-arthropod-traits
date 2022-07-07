@@ -31,7 +31,26 @@ library(readr)          # To write csv
 ## Read source data
 
 ```{r}
-data <- read_xlsx(here::here("data", "raw", "DagvlindersR.xls"))
+dataVlinders <- read_xlsx(here::here("data", "raw", "Dagvlinders.xlsx"))
+```
+
+## Construct taxonomy file
+
+```{r}
+taxa <- dataVlinders %>% 
+	select(Species,
+	       Kingdom,
+	       Order,
+				 Suborder,
+				 Family) %>% 
+	distinct %>%
+	rename(speciesID = Species,
+				 suborder = Suborder) %>% 
+	mutate(species = str_replace(speciesID, "_", " "))
+taxa
+
+taxa <- gbif_species_name_match(df = taxa,
+																name = "species")
 ```
 
 ## Write data
