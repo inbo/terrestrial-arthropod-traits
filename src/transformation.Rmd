@@ -26,6 +26,9 @@ library(tidylog)        # To provide feedback on dplyr functions
 library(here)           # To find files
 library(readxl)         # To read Excel files
 library(readr)          # To write csv
+library(stringr)        # To replace values in dataset
+library(rgbif)          # To lookup names in GBIF backbone taxonomy
+library(inborutils)
 ```
 
 ## Read source data
@@ -51,6 +54,7 @@ taxa
 
 taxa <- gbif_species_name_match(df = taxa,
 																name = "species")
+
 ```
 
 ## Write data
